@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Lock } from "lucide-react";
 import axios from "axios";
+import { API_ENDPOINTS } from "@/config/api";
 
 const AdminLoginPage = () => {
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ const AdminLoginPage = () => {
     if (isAuthenticated) {
       console.log("Already authenticated, checking with backend...");
       // Verify with backend
-      axios.get("/api/admin/check-auth", { withCredentials: true })
+      axios.get(API_ENDPOINTS.ADMIN.CHECK_AUTH, { withCredentials: true })
         .then(response => {
           console.log("Auth check response:", response.data);
           if (response.data.authenticated) {
@@ -47,8 +48,8 @@ const AdminLoginPage = () => {
 
     try {
       // Make actual API call to backend for authentication
-      console.log("Making login request to /api/admin/login");
-      const response = await axios.post("/api/admin/login", { email, password }, {
+      console.log("Making login request to", API_ENDPOINTS.ADMIN.LOGIN);
+      const response = await axios.post(API_ENDPOINTS.ADMIN.LOGIN, { email, password }, {
         withCredentials: true // Important: This allows cookies to be set
       });
       
