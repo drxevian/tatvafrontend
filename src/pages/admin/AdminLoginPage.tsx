@@ -26,7 +26,7 @@ const AdminLoginPage = () => {
       axios.get(API_ENDPOINTS.ADMIN.CHECK_AUTH, { withCredentials: true })
         .then(response => {
           console.log("Auth check response:", response.data);
-          if (response.data.authenticated) {
+          if (response.data.authenticated && response.data.success) {
             console.log("Backend confirms authentication, redirecting to dashboard");
             navigate("/admin");
           } else {
@@ -55,21 +55,21 @@ const AdminLoginPage = () => {
       
       console.log("Login response:", response.data);
       
-      if (response.data.success) {
+      if (response.data.success && response.data.authenticated) {
         // Store authentication state
         localStorage.setItem("adminAuthenticated", "true");
         console.log("Login successful, setting localStorage and redirecting");
         
         toast({
           title: "Login Successful",
-          description: "Welcome back, Admin!",
+          description: response.data.message || "Welcome back, Admin!",
           variant: "default",
         });
         
         navigate("/admin");
       } else {
-        console.log("Login failed: Invalid credentials");
-        throw new Error("Invalid credentials");
+        console.log("Login failed:", response.data.message);
+        throw new Error(response.data.message || "Invalid credentials");
       }
     } catch (error) {
       console.error("Login error:", error);
@@ -79,13 +79,19 @@ const AdminLoginPage = () => {
           statusText: error.response?.statusText,
           data: error.response?.data
         });
+        
+        toast({
+          title: "Login Failed",
+          description: error.response?.data?.message || "Invalid email or password",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Login Failed",
+          description: "An unexpected error occurred",
+          variant: "destructive",
+        });
       }
-      
-      toast({
-        title: "Login Failed",
-        description: "Invalid email or password",
-        variant: "destructive",
-      });
     } finally {
       setLoading(false);
     }
