@@ -2,6 +2,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect } from "react";
+import { API_ENDPOINTS } from "@/config/api";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -19,9 +20,9 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const { data: isAuthValid, isLoading, error } = useQuery({
     queryKey: ["auth-check"],
     queryFn: async () => {
-      console.log("Making auth check request to /api/admin/check-auth");
+      console.log("Making auth check request to", API_ENDPOINTS.ADMIN.CHECK_AUTH);
       try {
-        const response = await axios.get("/api/admin/check-auth", {
+        const response = await axios.get(API_ENDPOINTS.ADMIN.CHECK_AUTH, {
           withCredentials: true
         });
         console.log("Auth check response:", response.data);
