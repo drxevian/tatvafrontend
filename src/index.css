@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: #322013;
+    --foreground: #e7dfd9;
+
+    --card: #322013;
+    --card-foreground: #e7dfd9;
+
+    --popover: #322013;
+    --popover-foreground: #e7dfd9;
+
+    --primary: #ffd700;
+    --primary-foreground: #000000;
+
+    --secondary: #000000;
+    --secondary-foreground: #e7dfd9;
+
+    --muted: #322013;
+    --muted-foreground: #e7dfd9;
+
+    --accent: #ffd700;
+    --accent-foreground: #000000;
+
+    --destructive: #ff0000;
+    --destructive-foreground: #e7dfd9;
+
+    --border: #322013;
+    --input: #322013;
+    --ring: #ffd700;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: #322013;
+    --foreground: #e7dfd9;
+
+    --card: #322013;
+    --card-foreground: #e7dfd9;
+
+    --popover: #322013;
+    --popover-foreground: #e7dfd9;
+
+    --primary: #ffd700;
+    --primary-foreground: #000000;
+
+    --secondary: #000000;
+    --secondary-foreground: #e7dfd9;
+
+    --muted: #322013;
+    --muted-foreground: #e7dfd9;
+
+    --accent: #ffd700;
+    --accent-foreground: #000000;
+
+    --destructive: #ff0000;
+    --destructive-foreground: #e7dfd9;
+
+    --border: #322013;
+    --input: #322013;
+    --ring: #ffd700;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+.section-padding {
+  @apply py-16 md:py-24;
+}
+
+.heading-gradient {
+  @apply bg-gradient-to-r from-tatva-yellow to-tatva-yellow bg-clip-text text-transparent;
+}
+
+.animate-on-scroll {
+  @apply opacity-0 translate-y-4 transition-all duration-700 ease-out;
+}
+
+.animate-on-scroll.is-visible {
+  @apply opacity-100 translate-y-0;
+}
