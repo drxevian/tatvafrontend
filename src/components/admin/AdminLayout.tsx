@@ -3,6 +3,7 @@ import { PackageOpen, Mail, Settings, PlusCircle, List, Home, MessageSquare, Log
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { ReactNode } from "react";
 import { useToast } from "@/hooks/use-toast";
+import axios from "axios";
 
 interface AdminLayoutProps {
   children?: ReactNode;
@@ -12,14 +13,27 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleLogout = () => {
-    localStorage.removeItem("adminAuthenticated");
-    toast({
-      title: "Logged out",
-      description: "You have been successfully logged out.",
-      variant: "default",
-    });
-    navigate("/admin/login");
+  const handleLogout = async () => {
+    try {
+      // Call backend to clear the cookie
+      await axios.post("/api/admin/logout", {}, { withCredentials: true });
+      
+      // Clear local storage
+      localStorage.removeItem("adminAuthenticated");
+      
+      toast({
+        title: "Logged out",
+        description: "You have been successfully logged out.",
+        variant: "default",
+      });
+      
+      navigate("/admin/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Still clear local storage and redirect even if the API call fails
+      localStorage.removeItem("adminAuthenticated");
+      navigate("/admin/login");
+    }
   };
 
   return (

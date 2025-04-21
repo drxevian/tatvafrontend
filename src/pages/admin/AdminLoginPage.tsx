@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Lock } from "lucide-react";
-import { ADMIN_CREDENTIALS } from "@/config/admin";
+import axios from "axios";
 
 const AdminLoginPage = () => {
   const [email, setEmail] = useState("");
@@ -14,17 +14,50 @@ const AdminLoginPage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  // Check if already authenticated
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("adminAuthenticated") === "true";
+    console.log("AdminLoginPage - Already authenticated:", isAuthenticated);
+    
+    if (isAuthenticated) {
+      console.log("Already authenticated, checking with backend...");
+      // Verify with backend
+      axios.get("/api/admin/check-auth", { withCredentials: true })
+        .then(response => {
+          console.log("Auth check response:", response.data);
+          if (response.data.authenticated) {
+            console.log("Backend confirms authentication, redirecting to dashboard");
+            navigate("/admin");
+          } else {
+            console.log("Backend says not authenticated, clearing localStorage");
+            localStorage.removeItem("adminAuthenticated");
+          }
+        })
+        .catch(error => {
+          console.error("Auth check error:", error);
+          localStorage.removeItem("adminAuthenticated");
+        });
+    }
+  }, [navigate]);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    console.log("Attempting login with:", { email, password });
 
     try {
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
-        // Store authentication state (you might want to use a proper auth context/store)
+      // Make actual API call to backend for authentication
+      console.log("Making login request to /api/admin/login");
+      const response = await axios.post("/api/admin/login", { email, password }, {
+        withCredentials: true // Important: This allows cookies to be set
+      });
+      
+      console.log("Login response:", response.data);
+      
+      if (response.data.success) {
+        // Store authentication state
         localStorage.setItem("adminAuthenticated", "true");
+        console.log("Login successful, setting localStorage and redirecting");
         
         toast({
           title: "Login Successful",
@@ -34,9 +67,19 @@ const AdminLoginPage = () => {
         
         navigate("/admin");
       } else {
+        console.log("Login failed: Invalid credentials");
         throw new Error("Invalid credentials");
       }
     } catch (error) {
+      console.error("Login error:", error);
+      if (axios.isAxiosError(error)) {
+        console.error("Axios error details:", {
+          status: error.response?.status,
+          statusText: error.response?.statusText,
+          data: error.response?.data
+        });
+      }
+      
       toast({
         title: "Login Failed",
         description: "Invalid email or password",
