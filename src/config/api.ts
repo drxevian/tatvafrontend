@@ -1,3 +1,8 @@
+import axios from 'axios';
+
+// Configure axios defaults
+axios.defaults.withCredentials = true;
+
 export const API_BASE_URL = import.meta.env.VITE_NODE_ENV === 'production' 
   ? import.meta.env.VITE_PRODUCTION_API_URL 
   : import.meta.env.VITE_API_URL;
