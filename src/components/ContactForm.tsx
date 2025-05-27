@@ -97,7 +97,7 @@ const ContactForm = () => {
                 <FormLabel className="text-tatva-dark dark:text-tatva-light">Full Name</FormLabel>
                 <FormControl>
                   <Input 
-                    placeholder="John Doe" 
+                    placeholder="" 
                     {...field} 
                     className="bg-white/50 dark:bg-tatva-dark/50 border-tatva-blue/20 focus:border-tatva-blue/40 focus:ring-tatva-blue/20 transition-all duration-300"
                   />
@@ -115,7 +115,7 @@ const ContactForm = () => {
                 <FormControl>
                   <Input 
                     type="email" 
-                    placeholder="you@example.com" 
+                    placeholder="" 
                     {...field} 
                     className="bg-white/50 dark:bg-tatva-dark/50 border-tatva-blue/20 focus:border-tatva-blue/40 focus:ring-tatva-blue/20 transition-all duration-300"
                   />
@@ -135,7 +135,7 @@ const ContactForm = () => {
                 <FormLabel className="text-tatva-dark dark:text-tatva-light">Phone Number</FormLabel>
                 <FormControl>
                   <Input 
-                    placeholder="+91 98765 43210" 
+                    placeholder="" 
                     {...field} 
                     className="bg-white/50 dark:bg-tatva-dark/50 border-tatva-blue/20 focus:border-tatva-blue/40 focus:ring-tatva-blue/20 transition-all duration-300"
                   />
@@ -152,7 +152,7 @@ const ContactForm = () => {
                 <FormLabel className="text-tatva-dark dark:text-tatva-light">Subject</FormLabel>
                 <FormControl>
                   <Input 
-                    placeholder="How can we help you?" 
+                    placeholder="" 
                     {...field} 
                     className="bg-white/50 dark:bg-tatva-dark/50 border-tatva-blue/20 focus:border-tatva-blue/40 focus:ring-tatva-blue/20 transition-all duration-300"
                   />
