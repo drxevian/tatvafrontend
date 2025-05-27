@@ -130,13 +130,13 @@ const ServiceInquiryForm = ({ serviceName, trigger }: ServiceInquiryFormProps) =
           </div>
           <div className="space-y-2">
             <label htmlFor="message" className="text-sm font-medium text-tatva-dark dark:text-tatva-light">
-              Additional Message
+              Company Information
             </label>
             <Textarea
               id="message"
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              placeholder="Any additional information you'd like to share..."
+              placeholder="company details"
               className="bg-white/50 dark:bg-tatva-dark/50 border-tatva-blue/20 focus:border-tatva-blue/40 focus:ring-tatva-blue/20"
               disabled={isSubmitting}
             />
