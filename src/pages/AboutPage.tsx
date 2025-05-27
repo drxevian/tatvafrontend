@@ -1,13 +1,8 @@
 import Hero from "src/components/Hero.tsx";
 import TestimonialCard from "src/components/TestimonialCard";
-import { 
-  Activity, Briefcase, Building, Construction, Cog, Gauge, CheckCircle,
-  Map, ShoppingBag, Factory, Car, Beaker, Hotel, Truck, 
-  Package, Pickaxe, Droplets, Shirt, Pill, Anchor
-} from "lucide-react";
 import { Button } from "src/components/ui/button";
 import { Link } from "react-router-dom";
-import { Briefcase, Award, Clock, CheckCircle, ChevronRight } from "lucide-react";
+import { Briefcase, Award, Clock, CheckCircle, ChevronRight, Activity, Car, Beaker, Hotel, Factory, Pickaxe, Droplets, Shirt, Pill, Anchor } from "lucide-react";
 import { Card, CardContent } from "src/components/ui/card";
 
 const AboutPage = () => {
@@ -58,65 +53,6 @@ const AboutPage = () => {
       role: "Lead Engineer",
       bio: "Our lead engineer is an expert in designing and implementing innovative solutions for various industries.",
       imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80",
-    },
-  ];
-
-  const industries = [
-    {
-      title: "Agriculture",
-      description: "Specialized solutions for agricultural equipment, irrigation systems, and processing facilities.",
-      icon: <Activity className="h-10 w-10" />,
-    },
-    {
-      title: "Automotive",
-      description: "Comprehensive services for automotive manufacturing plants and assembly lines.",
-      icon: <Car className="h-10 w-10" />,
-    },
-    {
-      title: "Chemicals",
-      description: "Expert solutions for chemical processing plants and safety systems.",
-      icon: <Beaker className="h-10 w-10" />,
-    },
-    {
-      title: "Hospitality",
-      description: "Custom engineering solutions for hotels, resorts, and hospitality facilities.",
-      icon: <Hotel className="h-10 w-10" />,
-    },
-    {
-      title: "Logistics",
-      description: "Comprehensive solutions for warehouse management, material handling, and supply chain optimization.",
-      icon: <Truck className="h-6 w-6" />,
-      link: "/services/logistics",
-    },
-    {
-      title: "Manufacturing",
-      description: "End-to-end solutions for manufacturing facilities and production lines.",
-      icon: <Factory className="h-10 w-10" />,
-    },
-    {
-      title: "Metal and Mining",
-      description: "Specialized services for metal processing plants and mining operations.",
-      icon: <Pickaxe className="h-10 w-10" />,
-    },
-    {
-      title: "Oil & Gas",
-      description: "Expert solutions for oil refineries, gas processing plants, and extraction facilities.",
-      icon: <Droplets className="h-10 w-10" />,
-    },
-    {
-      title: "Textile",
-      description: "Comprehensive services for textile manufacturing and processing facilities.",
-      icon: <Shirt className="h-10 w-10" />,
-    },
-    {
-      title: "Pharmaceuticals",
-      description: "Specialized solutions for pharmaceutical manufacturing and research facilities.",
-      icon: <Pill className="h-10 w-10" />,
-    },
-    {
-      title: "Ports",
-      description: "Expert services for port infrastructure, cargo handling, and logistics.",
-      icon: <Anchor className="h-10 w-10" />,
     },
   ];
 
@@ -250,7 +186,7 @@ const AboutPage = () => {
       </section>
 
       {/* Industries We Serve */}
-      {/* <section className="section-padding bg-muted">
+      <section className="section-padding bg-gradient-to-br from-gray-50 to-gray-100 dark:from-tatva-dark/90 dark:to-tatva-dark">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Industries We Serve</h2>
@@ -259,23 +195,72 @@ const AboutPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {[
-              { name: "Chemicals and Petrochemicals Industry", icon: "🧪" },
-              { name: "Pharmaceutical Industry", icon: "💊" },
-              { name: "Plastic Industry", icon: "🏭" },
-              { name: "Ceramic Industry", icon: "🏺" },
+              {
+                title: "Agriculture",
+                description: "Specialized solutions for agricultural equipment, irrigation systems, and processing facilities.",
+                icon: <Activity className="h-10 w-10" />,
+              },
+              {
+                title: "Automotive",
+                description: "Comprehensive services for automotive manufacturing plants and assembly lines.",
+                icon: <Car className="h-10 w-10" />,
+              },
+              {
+                title: "Chemicals",
+                description: "Expert solutions for chemical processing plants and safety systems.",
+                icon: <Beaker className="h-10 w-10" />,
+              },
+              {
+                title: "Hospitality",
+                description: "Custom engineering solutions for hotels, resorts, and hospitality facilities.",
+                icon: <Hotel className="h-10 w-10" />,
+              },
+              {
+                title: "Manufacturing",
+                description: "End-to-end solutions for manufacturing facilities and production lines.",
+                icon: <Factory className="h-10 w-10" />,
+              },
+              {
+                title: "Metal and Mining",
+                description: "Specialized services for metal processing plants and mining operations.",
+                icon: <Pickaxe className="h-10 w-10" />,
+              },
+              {
+                title: "Oil & Gas",
+                description: "Expert solutions for oil refineries, gas processing plants, and extraction facilities.",
+                icon: <Droplets className="h-10 w-10" />,
+              },
+              {
+                title: "Textile",
+                description: "Comprehensive services for textile manufacturing and processing facilities.",
+                icon: <Shirt className="h-10 w-10" />,
+              },
+              {
+                title: "Pharmaceuticals",
+                description: "Specialized solutions for pharmaceutical manufacturing and research facilities.",
+                icon: <Pill className="h-10 w-10" />,
+              },
+              {
+                title: "Ports",
+                description: "Expert services for port infrastructure, cargo handling, and logistics.",
+                icon: <Anchor className="h-10 w-10" />,
+              },
             ].map((industry, index) => (
-              <Card key={index} className="text-center h-full">
-                <CardContent className="p-6">
-                  <div className="text-4xl mb-4">{industry.icon}</div>
-                  <h3 className="text-xl font-bold mb-3">{industry.name}</h3>
-                </CardContent>
+              <Card key={index} className="bg-gradient-to-br from-white to-white/90 dark:from-tatva-dark dark:to-tatva-dark/90 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] hover:from-tatva-blue/5 hover:to-tatva-teal/5 dark:hover:from-tatva-blue/10 dark:hover:to-tatva-teal/10">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="bg-gradient-to-br from-tatva-blue/10 to-tatva-teal/10 p-3 rounded-lg text-tatva-blue">
+                    {industry.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-tatva-dark dark:text-tatva-light">{industry.title}</h3>
+                </div>
+                <p className="text-gray-600 dark:text-gray-300">{industry.description}</p>
               </Card>
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-tatva-blue to-tatva-teal text-white">
