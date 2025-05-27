@@ -56,6 +56,65 @@ const AboutPage = () => {
     },
   ];
 
+  const industries = [
+    {
+      title: "Agriculture",
+      description: "Specialized solutions for agricultural equipment, irrigation systems, and processing facilities.",
+      icon: <Activity className="h-10 w-10" />,
+    },
+    {
+      title: "Automotive",
+      description: "Comprehensive services for automotive manufacturing plants and assembly lines.",
+      icon: <Car className="h-10 w-10" />,
+    },
+    {
+      title: "Chemicals",
+      description: "Expert solutions for chemical processing plants and safety systems.",
+      icon: <Beaker className="h-10 w-10" />,
+    },
+    {
+      title: "Hospitality",
+      description: "Custom engineering solutions for hotels, resorts, and hospitality facilities.",
+      icon: <Hotel className="h-10 w-10" />,
+    },
+    {
+      title: "Logistics",
+      description: "Comprehensive solutions for warehouse management, material handling, and supply chain optimization.",
+      icon: <Truck className="h-6 w-6" />,
+      link: "/services/logistics",
+    },
+    {
+      title: "Manufacturing",
+      description: "End-to-end solutions for manufacturing facilities and production lines.",
+      icon: <Factory className="h-10 w-10" />,
+    },
+    {
+      title: "Metal and Mining",
+      description: "Specialized services for metal processing plants and mining operations.",
+      icon: <Pickaxe className="h-10 w-10" />,
+    },
+    {
+      title: "Oil & Gas",
+      description: "Expert solutions for oil refineries, gas processing plants, and extraction facilities.",
+      icon: <Droplets className="h-10 w-10" />,
+    },
+    {
+      title: "Textile",
+      description: "Comprehensive services for textile manufacturing and processing facilities.",
+      icon: <Shirt className="h-10 w-10" />,
+    },
+    {
+      title: "Pharmaceuticals",
+      description: "Specialized solutions for pharmaceutical manufacturing and research facilities.",
+      icon: <Pill className="h-10 w-10" />,
+    },
+    {
+      title: "Ports",
+      description: "Expert services for port infrastructure, cargo handling, and logistics.",
+      icon: <Anchor className="h-10 w-10" />,
+    },
+  ];
+
   const timeline = [
     {
       year: "Founding",
