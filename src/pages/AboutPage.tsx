@@ -1,5 +1,10 @@
 import Hero from "src/components/Hero.tsx";
 import TestimonialCard from "src/components/TestimonialCard";
+import { 
+  Activity, Briefcase, Building, Construction, Cog, Gauge, CheckCircle,
+  Map, ShoppingBag, Factory, Car, Beaker, Hotel, Truck, 
+  Package, Pickaxe, Droplets, Shirt, Pill, Anchor
+} from "lucide-react";
 import { Button } from "src/components/ui/button";
 import { Link } from "react-router-dom";
 import { Briefcase, Award, Clock, CheckCircle, ChevronRight } from "lucide-react";
