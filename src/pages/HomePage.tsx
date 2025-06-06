@@ -120,19 +120,7 @@ const HomePage = () => {
                 </Button>
               </div>
             </div>
-            <div className="relative">
-              <img 
-                src="/founder.jpg" 
-                alt="Engineering team at work" 
-                className="rounded-lg shadow-lg w-full"
-              />
-              <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-tatva-blue via-tatva-blue/90 to-tatva-teal text-white p-6 rounded-lg shadow-lg md:max-w-sm transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
-                <p className="font-medium text-lg">
-                  "Our mission is to deliver engineering solutions that create lasting value for our clients and society."
-                </p>
-                <p className="mt-4 font-semibold">— kush Thoriya, Founder</p>
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>
