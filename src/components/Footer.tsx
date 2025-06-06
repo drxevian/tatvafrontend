@@ -73,7 +73,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/services" className="text-gray-300 hover:text-tatva-teal transition-colors">
-                  Erection and Installation
+                  Erection Commissioning and Installation
                 </Link>
               </li>
               <li>
