@@ -78,12 +78,12 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/services" className="text-gray-300 hover:text-tatva-teal transition-colors">
-                  Chemicals & Petrochemicals
+                  Maintenance
                 </Link>
               </li>
               <li>
                 <Link to="/services" className="text-gray-300 hover:text-tatva-teal transition-colors">
-                  Pharmaceuticals
+                  Logistics
                 </Link>
               </li>
             </ul>
