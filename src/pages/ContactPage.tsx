@@ -97,12 +97,13 @@ const ContactPage = () => {
         <div className="container mx-auto px-4">
           <div className="bg-muted rounded-lg overflow-hidden h-96">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.772952927495!2d73.15460917538987!3d22.7291416370655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e5c8a6d13a01f%3A0xee2a419b7f729e6f!2sChhani%20Jakat%20Naka%2C%20Vadodara%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1712483033971!5m2!1sen!2sin!4v1712483033971!5m2!1sen!2sin" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.126875560969!2d73.16899049999999!3d22.348837700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc9a2f3eb99d5%3A0x48c95f2aca78d337!2sTatva%20engineers!5e0!3m2!1sen!2sin!4v1759399683722!5m2!1sen!2sin" 
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
-              allowFullScreen={false} 
+              allowFullScreen={true} 
               loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
               title="Tatva Engineers Location"
             ></iframe>
           </div>
