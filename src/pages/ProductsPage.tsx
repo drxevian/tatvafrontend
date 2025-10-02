@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
 import Hero from "src/components/Hero";
 import ProductCard from "src/components/ProductCard";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "src/components/ui/tabs";
 import { Input } from "src/components/ui/input";
 import { Search } from "lucide-react";
-import { Checkbox } from "src/components/ui/checkbox";
-import { Label } from "src/components/ui/label";
 import { getAllProducts } from "src/utils/products";
 import { Product } from "src/types";
 import { useToast } from "src/hooks/use-toast";
@@ -14,8 +11,6 @@ const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const [showNew, setShowNew] = useState(false);
-  const [categories, setCategories] = useState<string[]>(["all"]);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -24,12 +19,6 @@ const ProductsPage = () => {
         setLoading(true);
         const data = await getAllProducts();
         setProducts(data);
-        
-        // Extract unique categories
-        const uniqueCategories = Array.from(
-          new Set(data.map(product => product.category))
-        ) as string[];
-        setCategories(["all", ...uniqueCategories]);
       } catch (error) {
         console.error("Error fetching products:", error);
         toast({
@@ -45,14 +34,12 @@ const ProductsPage = () => {
     fetchProducts();
   }, [toast]);
 
-  // Filter products based on category, search term, and new products flag
-  const filterProducts = (category: string, term: string) => {
+  // Filter products based on search term
+  const filterProducts = (term: string) => {
     return products.filter((product) => {
-      const matchesCategory = category === "all" || product.category.toLowerCase() === category.toLowerCase();
       const matchesSearch = product.title.toLowerCase().includes(term.toLowerCase()) ||
                           product.description.toLowerCase().includes(term.toLowerCase());
-      const matchesNew = showNew ? product.isNew : true;
-      return matchesCategory && matchesSearch && matchesNew;
+      return matchesSearch;
     });
   };
 
@@ -74,7 +61,7 @@ const ProductsPage = () => {
             </p>
           </div>
 
-          <div className="mb-12 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="mb-12 flex justify-center">
             <div className="relative w-full md:w-80">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input
@@ -84,70 +71,23 @@ const ProductsPage = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            
-            {/* <div className="flex items-center gap-2">
-              <Checkbox 
-                id="showNew" 
-                checked={showNew} 
-                onCheckedChange={() => setShowNew(!showNew)} 
-              />
-              <Label htmlFor="showNew" className="text-sm cursor-pointer">
-                Show only new products
-              </Label>
-            </div> */}
-            
-            {!loading && categories.length > 1 && (
-              <Tabs defaultValue="all" className="w-full md:w-auto">
-                <TabsList>
-                  {categories.map((category) => (
-                    <TabsTrigger key={category} value={category} className="capitalize">
-                      {category}
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-              </Tabs>
-            )}
           </div>
 
           {loading ? (
             <div className="text-center py-12">Loading products...</div>
           ) : (
-            <div className="mt-8">
-              <Tabs defaultValue="all">
-                <TabsContent value="all" className="mt-0">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {filterProducts("all", searchTerm).map((product) => (
-                      <ProductCard
-                        key={product.id}
-                        id={product.id}
-                        title={product.title}
-                        description={product.description}
-                        imageUrl={product.imageUrl}
-                        category={product.category}
-                        isNew={product.isNew}
-                      />
-                    ))}
-                  </div>
-                </TabsContent>
-
-                {categories.slice(1).map((category) => (
-                  <TabsContent key={category} value={category} className="mt-0">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                      {filterProducts(category, searchTerm).map((product) => (
-                        <ProductCard
-                          key={product.id}
-                          id={product.id}
-                          title={product.title}
-                          description={product.description}
-                          imageUrl={product.imageUrl}
-                          category={product.category}
-                          isNew={product.isNew}
-                        />
-                      ))}
-                    </div>
-                  </TabsContent>
-                ))}
-              </Tabs>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filterProducts(searchTerm).map((product) => (
+                <ProductCard
+                  key={product.id}
+                  id={product.id}
+                  title={product.title}
+                  description={product.description}
+                  imageUrl={product.imageUrl}
+                  category={product.category}
+                  isNew={product.isNew}
+                />
+              ))}
             </div>
           )}
         </div>
