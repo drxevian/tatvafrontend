@@ -1,4 +1,4 @@
 export const ADMIN_CREDENTIALS = {
-  email: "admin@admin",
-  password: "admin"
+  email: "TATVA@ENGINEERS",
+  password: "Tatva1007."
 }; 

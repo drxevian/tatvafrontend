@@ -1,7 +1,7 @@
 import Hero from "src/components/Hero";
 import ContactForm from "src/components/ContactForm";
 import { Card, CardContent } from "src/components/ui/card";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Linkedin, Instagram } from "lucide-react";
 
 const ContactPage = () => {
   const contactInfo = [
@@ -64,8 +64,8 @@ const ContactPage = () => {
               <h3 className="text-xl font-semibold mt-8 mb-4">Follow Us</h3>
               <div className="flex space-x-4">
                 {[
-                  { platform: "linkedin", url: "https://www.linkedin.com/in/tatva-engineers-b6a2b2344" },
-                  { platform: "instagram", url: "https://www.instagram.com/tatva_engineers?igsh=OHN6OGp1ZGZ6NTAw" }
+                  { platform: "linkedin", url: "https://www.linkedin.com/in/tatva-engineers-b6a2b2344", icon: <Linkedin className="w-5 h-5" /> },
+                  { platform: "instagram", url: "https://www.instagram.com/tatva_engineers?igsh=OHN6OGp1ZGZ6NTAw", icon: <Instagram className="w-5 h-5" /> }
                 ].map((social) => (
                   <a
                     key={social.platform}
@@ -75,7 +75,7 @@ const ContactPage = () => {
                     className="bg-muted hover:bg-tatva-blue hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300"
                     aria-label={`Follow us on ${social.platform}`}
                   >
-                    <span className="capitalize">{social.platform[0]}</span>
+                    {social.icon}
                   </a>
                 ))}
               </div>
